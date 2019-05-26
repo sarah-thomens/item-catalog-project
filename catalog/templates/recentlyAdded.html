@@ -1,4 +1,19 @@
 {% extends "main.html" %}
 {% block content %}
 {% include "header.html" %}
+
+<div class="main-and-sidebar-wrapper">
+	<aside class="sidebar">
+		<div class="genres">
+			{% include "genres.html" %}
+		</div>
+		<div class="links">
+			{% include "links.html" %}
+		</div>
+	</aside>
+	<section class="main">
+		This is the main page section.
+	</section>
+</div>
+
 {% endblock %}

@@ -1,3 +1,45 @@
+html
+{
+	box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after
+{
+	box-sizing: inherit;
+}
+
+body, html
+{
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+body
+{
+	font-family: Arial Rounded MT Bold;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: LightSkyBlue;
+}
+
+.container
+{
+	display: flex;
+	flex-direction: column;
+}
+
+header
+{
+	display: flex;
+	height: 100px;
+	margin-bottom: 10px;
+	background-color: purple;
+}
+
 h1
 {
 	font-family: "Helvetica Neue Light", Roboto, Helvetica, Arial, sans-serif;
@@ -6,12 +48,69 @@ h1
 	line-height: 60px;
 	font-weight: 300;
 	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .login-button
 {
 	font-size: 20px;
-	float: right;
 	color: white;
 	background-color: navy;
+	height: 50px;
+	width: 70px;
+	margin-top: auto;
+	margin-bottom: auto;
+	margin-right: 20px;
+}
+
+.main-and-sidebar-wrapper
+{
+	display: flex;
+	flex-direction: row;
+}
+
+.sidebar
+{
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	margin-left: 10px;
+	max-width: 300px;
+	border: 1px solid red;
+}
+
+.main
+{
+	flex: 3;
+	margin-left: 10px;
+	margin-right: 10px;
+	border: 1px solid green
+}
+
+.genres
+{
+	border: 1px solid orange;
+}
+
+.links
+{
+	border: 1px solid yellow;
+}
+
+/* Responsive Code */
+@media (max-width: 600px)
+{
+	.main-and-sidebar-wrapper
+	{
+		flex-direction: column;
+	}
+
+	.sidebar
+	{
+		margin-right: 0;
+		margin-bottom: 60px;
+	}
 }
