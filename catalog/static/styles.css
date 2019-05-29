@@ -2,6 +2,16 @@
 a
 {
 	color: midnightblue;
+	text-decoration: none;
+}
+
+a:hover
+{
+	color: hotpink;
+	text-shadow: 1px 1px pink;
+	padding: 5px;
+	border: 1px solid pink;
+	border-radius: 20px;
 }
 
 /*--HTML and BODY CSS----------------------------------------------------------*/
@@ -43,50 +53,61 @@ body
 header
 {
 	display: flex;
+	flex-direction: row;
 	height: 100px;
 	background-color: purple;
 }
 
 header nav
 {
-	margin-left: 20px;
+	width: 10%;
 	list-style: none;
 	margin-top: auto;
 	margin-bottom: auto;
+	margin-left: 20px;
 	text-align: center;
+	line-height: 25px;
 }
 
 .page-title
 {
+	width: 75%;
 	font-family: "Helvetica Neue Light", Roboto, Helvetica, Arial, sans-serif;
 	font-size: 50px;
 	color: midnightblue;
-	line-height: 60px;
+	line-height: 70px;
 	font-weight: 300;
 	margin-top: 20px;
 	margin-bottom: 20px;
-	margin-left: auto;
-	margin-right: auto;
+	text-align: center;
 }
 
 .username
 {
+	width: 10%;
 	margin-top: auto;
 	margin-bottom: auto;
-	margin-right: 10px;
-	font-size: 25px;
+	font-size: 20px;
+	text-align: center;
+	margin-right: 0.5vw;
 }
 
 .login-button
 {
+	width: 70px;
 	font-size: 20px;
 	color: white;
 	background-color: navy;
 	height: 50px;
-	width: 70px;
 	margin-top: auto;
 	margin-bottom: auto;
 	margin-right: 20px;
+}
+
+.login-button:hover
+{
+	color: navy;
+	background-color: white;
 }
 
 /*-------------------------------------------------------------------------------
@@ -99,27 +120,28 @@ header nav
 	height: 100vh;
 }
 
-
+/*--Sidebar CSS----------------------------------------------------------------*/
 .sidebar
 {
-	display: flex;
-	flex-direction: column;
 	flex: 1;
 	max-width: 300px;
 	padding-left: 20px;
 	background-color: green;
 }
 
+.genres-list
+{
+	list-style: none;
+	padding-left: 10px;
+	font-size: 19px;
+	line-height: 30px;
+}
+
+/*--Main Page Information CSS--------------------------------------------------*/
 .main
 {
 	flex: 3;
 	padding-left: 20px;
-}
-
-.add-book-link
-{
-	padding-left: 25px;
-	padding-top: 25px;
 }
 
 .page-headers
@@ -128,12 +150,28 @@ header nav
 	flex-direction: row;
 }
 
+.add-book-link
+{
+	margin-left: 25px;
+	margin-top: 25px;
+}
+
+.add-book-link:hover
+{
+	margin-left: 20px;
+	margin-top: 15px;
+	padding-top: 15px;
+}
+
 .recent-books
 {
 	list-style: none;
+	line-height: 30px;
 }
 
-/* Responsive Code */
+/*-------------------------------------------------------------------------------
+ Responsive CSS Code
+-------------------------------------------------------------------------------*/
 @media (max-width: 600px)
 {
 	.main-and-sidebar-wrapper
@@ -146,5 +184,53 @@ header nav
 		max-width: none;
 		margin-right: 0;
 		margin-bottom: 60px;
+	}
+}
+
+/*--CSS Change at width of 1350px----------------------------------------------*/
+@media (max-width: 1350px)
+{
+	header nav
+	{
+		width: 20%;
+	}
+}
+
+/*--CSS Change at width of 1000px----------------------------------------------*/
+@media (max-width: 1000px)
+{
+	header
+	{
+		height: 100px;
+	}
+
+	header nav
+	{
+		font-size: 2vw;
+		width: 10%;
+		margin-left: 20px;
+		line-height: 1.5vw;
+	}
+
+	.page-title
+	{
+		width: 75%;
+		font-size: 50px;
+		line-height: 70px;
+	}
+
+	.username
+	{
+		width: 10%;
+		font-size: 20px;
+		margin-right: 0.5vw;
+	}
+
+	.login-button
+	{
+		width: 70px;
+		font-size: 20px;
+		height: 50px;
+		margin-right: 20px;
 	}
 }

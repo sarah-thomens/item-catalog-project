@@ -14,10 +14,11 @@
 			<a class="add-book-link" href="#">Add Book</a>
 		</div>
 		<ul class="recent-books">
-			<li><a href="#">New Book (<em>Genre</em>)</a></li>
-			<li><a href="#">New Book (<em>Genre</em>)</a></li>
-			<li><a href="#">New Book (<em>Genre</em>)</a></li>
-			<li><a href="#">New Book (<em>Genre</em>)</a></li>
+			{% for book in recentBooks %}
+				<li><a href="#">
+					{{book.title}} (<em>{{book.genre}}</em>)
+				</a></li>
+			{% endfor %}
 		</ul>
 	</section>
 </div>

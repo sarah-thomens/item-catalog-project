@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, jsonify, url_for, flash
-from sqlalchemy import create_engine, asc
+from sqlalchemy import create_engine, asc, desc
 from sqlalchemy.orm import sessionmaker
 from database_setup import Base, Book, User
 from flask import session as login_session
@@ -26,7 +26,7 @@ session = DBSession()
 @app.route('/')
 @app.route('/recent/')
 def showRecentBooks():
-	recentBooks = session.query(Book)
+	recentBooks = session.query(Book).order_by(desc(Book.id))
 	return render_template('recentlyAdded.html', recentBooks = recentBooks)
 
 
