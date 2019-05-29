@@ -29,10 +29,19 @@ def showRecentBooks():
 	recentBooks = session.query(Book).order_by(desc(Book.id)).limit(10).all()
 	return render_template('recentlyAdded.html', recentBooks = recentBooks)
 
-#--Show Specific Genre Books------------------------------------------------------
+#--Show Specific Genre of Books---------------------------------------------------
 @app.route('/genre/<book_genre>')
 def showGenreBooks(book_genre):
-	return render_template('genreBooks.html', book_genre = book_genre)
+	editGenre = book_genre.replace( '-', ' ' ).title()
+	genreBooks = session.query(Book).filter(Book.genre == book_genre)
+	return render_template('genreBooks.html', book_genre = editGenre, genreBooks = genreBooks)
+
+#--Show Book Information----------------------------------------------------------
+@app.route('/<book_title>')
+def showBookInfo(book_title):
+	book_title = book_title.replace('-', ' ').title()
+	book = session.query(Book).filter(Book.title == book_title).one()
+	return render_template('bookInfo.html', book = book)
 
 if __name__ == '__main__':
 	app.secret_key = 'super_secret_key'
