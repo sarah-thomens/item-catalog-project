@@ -14,7 +14,7 @@ import requests
 
 app = Flask(__name__)
 
-#--Connect to Database and create database session------------------------------------------------------------
+#--Connect to Database and create database session--------------------------------
 engine = create_engine('sqlite:///booksCatalog.db', connect_args={'check_same_thread': False})
 Base.metadata.bind = engine
 
@@ -22,13 +22,17 @@ DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
 
-#--Show Recently Added Books----------------------------------------------------------------------------------
+#--Show Recently Added Books------------------------------------------------------
 @app.route('/')
 @app.route('/recent/')
 def showRecentBooks():
 	recentBooks = session.query(Book).order_by(desc(Book.id)).limit(10).all()
 	return render_template('recentlyAdded.html', recentBooks = recentBooks)
 
+#--Show Specific Genre Books------------------------------------------------------
+@app.route('/genre/<book_genre>')
+def showGenreBooks(book_genre):
+	return render_template('genreBooks.html', book_genre = book_genre)
 
 if __name__ == '__main__':
 	app.secret_key = 'super_secret_key'
