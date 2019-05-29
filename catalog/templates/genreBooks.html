@@ -1,3 +1,18 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
 
+<div class="main-and-sidebar-wrapper">
+	<aside class="sidebar">
+		<div class="genres">
+			{% include "genres.html" %}
+		</div>
+	</aside>
+	<section class="main">
+		<div class="page-headers">
+			<h2>{{book_genre}}</h2>
+		</div>
+	</section>
+</div>
 
-<h2>{{book_genre}}</h2>
+{% endblock %}
