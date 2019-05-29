@@ -26,7 +26,7 @@ session = DBSession()
 @app.route('/')
 @app.route('/recent/')
 def showRecentBooks():
-	recentBooks = session.query(Book).order_by(desc(Book.id))
+	recentBooks = session.query(Book).order_by(desc(Book.id)).limit(10).all()
 	return render_template('recentlyAdded.html', recentBooks = recentBooks)
 
 
