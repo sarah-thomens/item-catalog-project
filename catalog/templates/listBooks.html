@@ -10,13 +10,16 @@
 	</aside>
 	<section class="main">
 		<div class="page-headers">
-			<h2>{{book_genre}} Books</h2>
+			<h2>{{book_type}} Books</h2>
 			<a class="add-book-link" href="#">Add Book</a>
 		</div>
 		<ul class="books-list">
-			{% for book in genreBooks %}
+			{% for book in books %}
 				<li><a href="{{url_for('showBookInfo', book_title = book.title.replace(' ', '-').lower())}}">
 					{{book.title}}
+					{% if book_type == "Recently Added" %}
+						(<em>{{book.genre.replace( '-', ' ' ).title()}}</em>)
+					{% endif %}
 				</a></li>
 			{% endfor %}
 		</ul>

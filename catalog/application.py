@@ -27,14 +27,14 @@ session = DBSession()
 @app.route('/recent/')
 def showRecentBooks():
 	recentBooks = session.query(Book).order_by(desc(Book.id)).limit(10).all()
-	return render_template('recentlyAdded.html', recentBooks = recentBooks)
+	return render_template('listBooks.html', book_type = 'Recently Added', books = recentBooks)
 
 #--Show Specific Genre of Books---------------------------------------------------
 @app.route('/genre/<book_genre>')
 def showGenreBooks(book_genre):
 	editGenre = book_genre.replace( '-', ' ' ).title()
 	genreBooks = session.query(Book).filter(Book.genre == book_genre)
-	return render_template('genreBooks.html', book_genre = editGenre, genreBooks = genreBooks)
+	return render_template('listBooks.html', book_type = editGenre, books = genreBooks)
 
 #--Show Book Information----------------------------------------------------------
 @app.route('/<book_title>')
