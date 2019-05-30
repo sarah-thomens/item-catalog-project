@@ -37,10 +37,9 @@ def showGenreBooks(book_genre):
 	return render_template('listBooks.html', book_type = editGenre, books = genreBooks)
 
 #--Show Book Information----------------------------------------------------------
-@app.route('/<book_title>')
-def showBookInfo(book_title):
-	book_title = book_title.replace('-', ' ').title()
-	book = session.query(Book).filter(Book.title == book_title).one()
+@app.route('/book/<int:book_id>/<book_title>')
+def showBookInfo(book_title, book_id):
+	book = session.query(Book).filter(Book.id == book_id).one()
 	return render_template('bookInfo.html', book = book)
 
 if __name__ == '__main__':

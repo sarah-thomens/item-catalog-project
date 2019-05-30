@@ -36,6 +36,7 @@ class Book(Base):
 	#--Table Column Fields------------------------------------------------------------------------------------
 	id = Column(Integer, primary_key = True)
 	title = Column(String(250), nullable = False)
+	urlSafeTitle = Column(String(250))
 	author = Column(String(250))
 	description = Column(String(500))
 	image = Column(String(250))
@@ -50,6 +51,7 @@ class Book(Base):
 		{
 			'id': self.id,
 			'title': self.title,
+			'urlSafeTitle': self.urlSafeTitle,
 			'author': self.author,
 			'description': self.description,
 			'image': self.image,

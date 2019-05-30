@@ -16,15 +16,15 @@ session.add(dummyUser)
 session.commit()
 
 ##--Creating Starter books for the book catalog database------------------------------------------------------
-book = Book(user_id = 1, title = "Uprooted", author = "Naomi Novik", description = "Agnieszka's whole life turns upside down when the Dragon chooses her as tribute.", image = "static/uprooted.jpg", genre = "fantasy")
+book = Book(user_id = 1, title = "Uprooted", urlSafeTitle = "uprooted", author = "Naomi Novik", description = "Agnieszka's whole life turns upside down when the Dragon chooses her as tribute.", image = "static/uprooted.jpg", genre = "fantasy")
 session.add(book)
 session.commit()
 
-book = Book(user_id = 1, title = "There's No Place Like Here", author = "Cecelia Ahern", description = "Sandy Shortt has been obsessed with finding lost things since she was little. Now, she's the lost thing.", image = "static/TNPLH.jpg", genre = "magical-realism")
+book = Book(user_id = 1, title = "There's No Place Like Here", urlSafeTitle = "theres-no-place-like-here", author = "Cecelia Ahern", description = "Sandy Shortt has been obsessed with finding lost things since she was little. Now, she's the lost thing.", image = "static/TNPLH.jpg", genre = "magical-realism")
 session.add(book)
 session.commit()
 
-book = Book(user_id = 1, title = "The Scarlet Letter", author = "Nathaniel Hawthorne", description = "Hester Prynne has been sentenced to public shame, being forced to wear the scarlet letter A across her chest for the rest of her life.", image = "static/ScarletLetter.jpg", genre = "classic")
+book = Book(user_id = 1, title = "The Scarlet Letter", urlSafeTitle = "the-scarlet-letter", author = "Nathaniel Hawthorne", description = "Hester Prynne has been sentenced to public shame, being forced to wear the scarlet letter A across her chest for the rest of her life.", image = "static/ScarletLetter.jpg", genre = "classic")
 session.add(book)
 session.commit()
 
