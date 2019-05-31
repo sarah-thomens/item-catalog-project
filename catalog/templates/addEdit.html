@@ -1,0 +1,42 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+<div class="main-and-sidebar-wrapper">
+	<section class="main">
+		<div class="page-headers">
+			<h2 class="book-header">Add a New Book</h2>
+		</div>
+		<form action="#" method = "post">
+			<div class="form-group">
+				<label for="title">Title:</label>
+				<input type="text" maxlength="250" class="form-control" name="title" placeholder="Book Title">
+
+				<label for="author">Author:</label>
+				<input type="text" maxlength="250" class="form-control" name="author" placeholder="Book Author">
+
+				<label for="description">Description:</label>
+				<textarea class="form-control" maxlength="250" rows="3" name="description" placeholder="Book Description"></textarea>
+
+				<label for="genre">Genre:</label>
+				<select name="genre">
+					<option value="classic">Classic</option>
+					<option value="crime">Crime</option>
+					<option value="fantasy">Fantasy</option>
+					<option value="historical-fiction">Historical Fiction</option>
+					<option value="magical-realism">Magical Realism</option>
+					<option value="mystery">Mystery</option>
+					<option value="science-fiction">Science Fiction</option>
+					<option value="suspense-thriller">Suspense Thriller</option>
+					<option value="romance">Romance</option>
+					<option value="dystopia">Dystopia</option>
+				</select>
+				<button type="submit" class="btn btn-default" id="submit" type="submit">
+					<span class="glyphicon glyphicon-glass" aria-hidden="true"></span>Create
+				</button>
+			</div>
+		</form>
+	</section>
+</div>
+
+{% endblock %}

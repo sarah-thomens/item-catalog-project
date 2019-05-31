@@ -4,6 +4,7 @@ from sqlalchemy.orm import sessionmaker
 from database_setup import Base, Book, User
 from flask import session as login_session
 import random, string
+import re
 
 from oauth2client.client import flow_from_clientsecrets
 from oauth2client.client import FlowExchangeError
@@ -41,6 +42,20 @@ def showGenreBooks(book_genre):
 def showBookInfo(book_title, book_id):
 	book = session.query(Book).filter(Book.id == book_id).one()
 	return render_template('bookInfo.html', book = book)
+
+#--Add Book Information-----------------------------------------------------------
+@app.route('/book/add', methods=['GET','POST'])
+def addBook():
+	if request.method == 'POST':
+		urlSafe = request.form['title'].replace(' ', '-').lower()
+		urlSafe = re.sub(r'[^a-zA-Z0-9-]', '', urlSafe)
+		newBook = Book(title = request.form['title'], urlSafeTitle = urlSafe, author = request.form['author'], description = request.form['description'], genre = request.form['genre'], user_id = 1)
+		session.add(newBook)
+		session.commit()
+		flash('New Book %s Successfully Created' % (newBook.title))
+		return redirect(url_for('showRecentBooks'))
+	else:
+		return render_template('addEdit.html')
 
 if __name__ == '__main__':
 	app.secret_key = 'super_secret_key'
