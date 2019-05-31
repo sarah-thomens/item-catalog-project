@@ -1,10 +1,12 @@
 <header>
 	<nav>
-		<li><a href="{{url_for('showRecentBooks')}}">Recently Added</a></li>
-		<li><a href="#">My Books</a></li>
-		<li><a href="#">All Books</a></li>
+		<li class="links"><a href="{{url_for('showRecentBooks')}}">Recently Added</a></li>
+		<li class="links"><a href="#">My Books</a></li>
+		<li class="links"><a href="#">All Books</a></li>
 	</nav>
 	<h1 class="page-title">My Book Catalog</h1>
 	<a class="username" href="#">Username</a>
-	<Button class='login-button'>Login</Button>
+	<div class="login-button-area">
+		<Button class="login-button">Login</Button>
+	</div>
 </header>

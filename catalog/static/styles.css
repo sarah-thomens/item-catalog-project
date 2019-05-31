@@ -66,14 +66,16 @@ header nav
 	margin-bottom: auto;
 	margin-left: 20px;
 	text-align: center;
+	font-size: 20px;
 	line-height: 25px;
 }
 
 .page-title
 {
-	width: 75%;
+	width: 70%;
 	font-family: "Helvetica Neue Light", Roboto, Helvetica, Arial, sans-serif;
 	font-size: 50px;
+	font-weight: bold;
 	color: midnightblue;
 	line-height: 70px;
 	font-weight: 300;
@@ -89,7 +91,14 @@ header nav
 	margin-bottom: auto;
 	font-size: 20px;
 	text-align: center;
-	margin-right: 0.5vw;
+	margin-right: 10px;
+}
+
+.login-button-area
+{
+	width: 10%;
+	margin-top: auto;
+	margin-bottom: auto;
 }
 
 .login-button
@@ -101,7 +110,6 @@ header nav
 	height: 50px;
 	margin-top: auto;
 	margin-bottom: auto;
-	margin-right: 20px;
 }
 
 .login-button:hover
@@ -117,7 +125,7 @@ header nav
 {
 	display: flex;
 	flex-direction: row;
-	height: 100vh;
+	height: 88vh;
 }
 
 /*--Sidebar CSS----------------------------------------------------------------*/
@@ -133,7 +141,7 @@ header nav
 {
 	list-style: none;
 	padding-left: 10px;
-	font-size: 19px;
+	font-size: 20px;
 	line-height: 30px;
 }
 
@@ -172,21 +180,6 @@ header nav
 /*-------------------------------------------------------------------------------
  Responsive CSS Code
 -------------------------------------------------------------------------------*/
-@media (max-width: 600px)
-{
-	.main-and-sidebar-wrapper
-	{
-		flex-direction: column;
-	}
-
-	.sidebar
-	{
-		max-width: none;
-		margin-right: 0;
-		margin-bottom: 60px;
-	}
-}
-
 /*--CSS Change at width of 1350px----------------------------------------------*/
 @media (max-width: 1350px)
 {
@@ -196,8 +189,8 @@ header nav
 	}
 }
 
-/*--CSS Change at width of 1000px----------------------------------------------*/
-@media (max-width: 1000px)
+/*--CSS Change at width of 1570px----------------------------------------------*/
+@media (max-width: 1570px)
 {
 	header
 	{
@@ -206,31 +199,149 @@ header nav
 
 	header nav
 	{
-		font-size: 2vw;
-		width: 10%;
-		margin-left: 20px;
-		line-height: 1.5vw;
+		font-size: 15px;
+		line-height: 20px;
 	}
 
 	.page-title
 	{
-		width: 75%;
-		font-size: 50px;
+		font-size: 40px;
 		line-height: 70px;
 	}
 
 	.username
 	{
-		width: 10%;
-		font-size: 20px;
-		margin-right: 0.5vw;
+		font-size: 15px;
 	}
 
 	.login-button
 	{
-		width: 70px;
+		width: 65px;
+		font-size: 15px;
+		height: 45px;
+		margin-right: 30px;
+	}
+}
+
+/*--CSS Change at width of 900px-----------------------------------------------*/
+@media (max-width: 900px)
+{
+	.genres-list
+	{
+		font-size: 15px;
+		line-height: 25px;
+	}
+}
+
+/*--CSS Change at width of 700px-----------------------------------------------*/
+@media (max-width: 700px)
+{
+	header
+	{
+		flex-wrap: wrap;
+		height: 110px;
+	}
+
+	header nav
+	{
+		display: flex;
+		flex-direction: row;
+		order: 2;
+		width: 100%;
+		font-size: 14px;
+		line-height: 0px;
+		margin-bottom: 15px;
+	}
+
+	.links
+	{
+		width: 33%;
+	}
+
+	.page-title
+	{
+		order: 0;
+		width: 80%;
+		font-size: 35px;
+		line-height: 70px;
+		margin-bottom: 0;
+	}
+
+	.username
+	{
+		display: none;
+		width: 0%;
+	}
+
+	.login-button-area
+	{
+		order: 1;
+		width: 15%;
+	}
+
+	.main-and-sidebar-wrapper
+	{
+		flex-direction: column;
+		height: 100px;
+	}
+
+	.sidebar
+	{
+		display: flex;
+		flex-direction: column;
+		padding-left: 0;
+		max-width: 100%;
+	}
+
+	.genre-title
+	{
+		text-align: center;
 		font-size: 20px;
-		height: 50px;
-		margin-right: 20px;
+		padding: 0;
+		margin: 0;
+		margin-top: 10px;
+	}
+
+	.genres-list
+	{
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		width: 100%;
+		padding-left: 0;
+		margin-top: 0;
+		margin-left: 20px;
+	}
+
+	.genre
+	{
+		width: 33%;
+	}
+}
+
+/*--CSS Change at width of 450px-----------------------------------------------*/
+@media (max-width: 450px)
+{
+	a:hover
+	{
+		padding: 1.3px;
+	}
+
+	.page-title
+	{
+		font-size: 25px;
+		line-height: 50px;
+	}
+
+	.login-button
+	{
+		width: 60px;
+		font-size: 15px;
+		height: 45px;
+	}
+
+	.genre
+	{
+		width: 50%;
 	}
 }

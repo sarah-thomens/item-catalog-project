@@ -1,1 +1,22 @@
-This is the {{book.title}} information.
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+<div class="main-and-sidebar-wrapper">
+	<section class="main">
+		<div class="page-headers">
+			<h2>{{book.title}}</h2>
+			<h3>By: {{book.author}}</h3>
+		</div>
+		<div class="book-info">
+			<img src="{{book.image}}" alt="{{book.title}}" height="300" width="200">
+			<p class="book-description">{{book.description}}</p>
+		</div>
+		<div class="book-buttons">
+			<Button class="edit-button">Edit</Button>
+			<Button class="delete-button">Delete</Button>
+		</div>
+	</section>
+</div>
+
+{% endblock %}
