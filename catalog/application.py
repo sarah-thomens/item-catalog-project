@@ -15,35 +15,53 @@ import requests
 
 app = Flask(__name__)
 
-#--Connect to Database and create database session--------------------------------
+#--Connect to Database and create database session-------------------------------
 engine = create_engine('sqlite:///booksCatalog.db', connect_args={'check_same_thread': False})
 Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
+#--------------------------------------------------------------------------------
+# Website JSON Endpoints
+#--------------------------------------------------------------------------------
+#--Book Catalog JSON Endpoint----------------------------------------------------
+@app.route('/catalog/JSON')
+def booksJSON():
+	books = session.query(Book).all()
+	return jsonify(books = [b.serialize for b in books])
 
-#--Show Recently Added Books------------------------------------------------------
+
+#--Specific Book JSON Endpoint---------------------------------------------------
+@app.route('/book/<int:book_id>/JSON')
+def restaurantMenuJSON(book_id):
+	book = session.query(Book).filter(Book.id == book_id).one()
+	return jsonify(book = book.serialize)
+
+#--------------------------------------------------------------------------------
+# Website Route Functions
+#--------------------------------------------------------------------------------
+#--Show Recently Added Books-----------------------------------------------------
 @app.route('/')
 @app.route('/recent/')
 def showRecentBooks():
 	recentBooks = session.query(Book).order_by(desc(Book.id)).limit(10).all()
 	return render_template('listBooks.html', book_type = 'Recently Added', books = recentBooks)
 
-#--Show Specific Genre of Books---------------------------------------------------
+#--Show Specific Genre of Books--------------------------------------------------
 @app.route('/genre/<book_genre>')
 def showGenreBooks(book_genre):
 	editGenre = book_genre.replace( '-', ' ' ).title()
 	genreBooks = session.query(Book).filter(Book.genre == book_genre)
 	return render_template('listBooks.html', book_type = editGenre, books = genreBooks)
 
-#--Show Book Information----------------------------------------------------------
+#--Show Book Information---------------------------------------------------------
 @app.route('/book/<int:book_id>/<book_title>')
 def showBookInfo(book_title, book_id):
 	book = session.query(Book).filter(Book.id == book_id).one()
 	return render_template('bookInfo.html', book = book)
 
-#--Add Book Information-----------------------------------------------------------
+#--Add Book Information----------------------------------------------------------
 @app.route('/book/add', methods=['GET','POST'])
 def addBook():
 	if request.method == 'POST':
@@ -56,7 +74,7 @@ def addBook():
 	else:
 		return render_template('addEdit.html')
 
-#--Edit Book Information----------------------------------------------------------
+#--Edit Book Information---------------------------------------------------------
 @app.route('/book/<int:book_id>/<book_title>/edit', methods=['GET','POST'])
 def editBook(book_title, book_id):
 	editedBook = session.query(Book).filter(Book.id == book_id).one()
@@ -79,7 +97,7 @@ def editBook(book_title, book_id):
 	else:
 		return render_template('addEdit.html', book = editedBook)
 
-#--Delete Book Information--------------------------------------------------------
+#--Delete Book Information-------------------------------------------------------
 @app.route('/book/<int:book_id>/<book_title>/delete', methods=['GET','POST'])
 def deleteBook(book_title, book_id):
 	bookToDelete = session.query(Book).filter(Book.id == book_id).one()
@@ -89,6 +107,32 @@ def deleteBook(book_title, book_id):
 		return redirect(url_for('showRecentBooks'))
 	else:
 		return render_template('delete.html', book = bookToDelete)
+
+#--------------------------------------------------------------------------------
+# Website Login and Login Route Functions
+#--------------------------------------------------------------------------------
+#--Get User Id using Email Helper Function---------------------------------------
+def getUserID(email):
+	try:
+		user = session.query(User).filter(User.email == email).one()
+		return user.id
+	except:
+		return None
+
+#--Get User Information using User ID Helper Function----------------------------
+def getUserInfo(user_id):
+	user = session.query(User).filter(User.id == user_id).one()
+	return user
+
+#--Create User using the Login Session Helper Function---------------------------
+def createUser(login_session):
+	newUser = User(name = login_session['name'], email = login_session['email'],
+		picture = login_session['picture'])
+	session.add(newUser)
+	session.commit()
+	user = session.query(User).filter(User.email == login_session['email']).one()
+	return user.id
+
 
 if __name__ == '__main__':
 	app.secret_key = 'super_secret_key'

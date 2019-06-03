@@ -20,8 +20,7 @@ class User(Base):
 	#--Return the object data in an easily serializable format------------------------------------------------
 	@property
 	def serialize(self):
-		return
-		{
+		return {
 			'id'		: self.id,
 			'name'		: self.name,
 			'email'		: self.email,
@@ -47,8 +46,7 @@ class Book(Base):
 	#--Return the object data in an easily serializable format------------------------------------------------
 	@property
 	def serialize(self):
-		return
-		{
+		return {
 			'id': self.id,
 			'title': self.title,
 			'urlSafeTitle': self.urlSafeTitle,
