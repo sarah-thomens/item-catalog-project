@@ -10,29 +10,29 @@
 		<form action="#" method = "post">
 			<div class="form-group">
 				<label for="title">Title:</label>
-				<input type="text" maxlength="250" class="form-control" name="title" placeholder="Book Title">
+				<input type="text" maxlength="500" class="form-control" name="title" placeholder="Book Title" {% if book %} value="{{book.title}}"{% endif %}>
 
 				<label for="author">Author:</label>
-				<input type="text" maxlength="250" class="form-control" name="author" placeholder="Book Author">
+				<input type="text" maxlength="250" class="form-control" name="author" placeholder="Book Author" {% if book %} value="{{book.author}}"{% endif %}>
 
 				<label for="description">Description:</label>
-				<textarea class="form-control" maxlength="250" rows="3" name="description" placeholder="Book Description"></textarea>
+				<textarea class="form-control" maxlength="250" rows="3" name="description" placeholder="Book Description">{% if book %} {{book.description}}{% endif %}</textarea>
 
 				<label for="genre">Genre:</label>
 				<select name="genre">
-					<option value="classic">Classic</option>
-					<option value="crime">Crime</option>
-					<option value="fantasy">Fantasy</option>
-					<option value="historical-fiction">Historical Fiction</option>
-					<option value="magical-realism">Magical Realism</option>
-					<option value="mystery">Mystery</option>
-					<option value="science-fiction">Science Fiction</option>
-					<option value="suspense-thriller">Suspense Thriller</option>
-					<option value="romance">Romance</option>
-					<option value="dystopia">Dystopia</option>
+					<option value="classic" {% if book and book.genre == 'classic' %} selected {% endif %}>Classic</option>
+					<option value="crime" {% if book and book.genre == 'crime' %} selected {% endif %}>Crime</option>
+					<option value="fantasy" {% if book and book.genre == 'fantasy' %} selected {% endif %}>Fantasy</option>
+					<option value="historical-fiction" {% if book and book.genre == 'historical-fiction' %} selected {% endif %}>Historical Fiction</option>
+					<option value="magical-realism" {% if book and book.genre == 'magical-realism' %} selected {% endif %}>Magical Realism</option>
+					<option value="mystery" {% if book and book.genre == 'mystery' %} selected {% endif %}>Mystery</option>
+					<option value="science-fiction" {% if book and book.genre == 'science-fiction' %} selected {% endif %}>Science Fiction</option>
+					<option value="suspense-thriller" {% if book and book.genre == 'suspense-thriller' %} selected {% endif %}>Suspense Thriller</option>
+					<option value="romance" {% if book and book.genre == 'romance' %} selected {% endif %}>Romance</option>
+					<option value="dystopia" {% if book and book.genre == 'dystopia' %} selected {% endif %}>Dystopia</option>
 				</select>
-				<button type="submit" class="btn btn-default" id="submit" type="submit">
-					<span class="glyphicon glyphicon-glass" aria-hidden="true"></span>Create
+				<button type="submit" id="submit">
+					<span aria-hidden="true"></span>{% if book %}Edit {% else %}Create {% endif %}
 				</button>
 			</div>
 		</form>

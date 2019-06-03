@@ -13,8 +13,8 @@
 			<p class="book-description">{{book.description}}</p>
 		</div>
 		<div class="book-buttons">
-			<Button class="edit-button">Edit</Button>
-			<Button class="delete-button">Delete</Button>
+			<a class="edit-button" href="{{url_for('editBook', book_title = book.urlSafeTitle, book_id = book.id)}}">Edit</a>
+			<a class="delete-button" href="{{url_for('deleteBook', book_title = book.urlSafeTitle, book_id = book.id)}}">Delete</a>
 		</div>
 	</section>
 </div>

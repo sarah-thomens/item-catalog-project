@@ -1,0 +1,23 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+<div class="main-and-sidebar-wrapper">
+	<section class="main">
+		<div class="page-headers">
+			<h2 class="book-header">Are You Sure You Want to Delete {{book.title}}?</h2>
+		</div>
+		<form action="#" method = 'post'>
+			<button type="submit" id="submit">
+				<span aria-hidden="true"></span>Delete
+			</button>
+		</form>
+		<a href = "{{url_for('showBookInfo', book_title = book.title, book_id = book.id)}}">
+			<button>
+				<span aria-hidden="true"></span>Cancel
+			</button>
+		</a>
+	</section>
+</div>
+
+{% endblock %}

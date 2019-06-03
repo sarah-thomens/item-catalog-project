@@ -52,10 +52,43 @@ def addBook():
 		newBook = Book(title = request.form['title'], urlSafeTitle = urlSafe, author = request.form['author'], description = request.form['description'], genre = request.form['genre'], user_id = 1)
 		session.add(newBook)
 		session.commit()
-		flash('New Book %s Successfully Created' % (newBook.title))
 		return redirect(url_for('showRecentBooks'))
 	else:
 		return render_template('addEdit.html')
+
+#--Edit Book Information----------------------------------------------------------
+@app.route('/book/<int:book_id>/<book_title>/edit', methods=['GET','POST'])
+def editBook(book_title, book_id):
+	editedBook = session.query(Book).filter(Book.id == book_id).one()
+	print(editedBook.title)
+	if request.method == 'POST':
+		if request.form['title']:
+			editedBook.title = request.form['title']
+			urlSafe = request.form['title'].replace(' ', '-').lower()
+			urlSafe = re.sub(r'[^a-zA-Z0-9-]', '', urlSafe)
+			editedBook.urlSafeTitle = urlSafe
+		if request.form['author']:
+			editedBook.author = request.form['author']
+		if request.form['description']:
+			editedBook.description = request.form['description']
+		if request.form['genre']:
+			editedBook.genre = request.form['genre']
+		session.add(editedBook)
+		session.commit()
+		return redirect(url_for('showBookInfo', book_title = editedBook.title, book_id = editedBook.id))
+	else:
+		return render_template('addEdit.html', book = editedBook)
+
+#--Delete Book Information--------------------------------------------------------
+@app.route('/book/<int:book_id>/<book_title>/delete', methods=['GET','POST'])
+def deleteBook(book_title, book_id):
+	bookToDelete = session.query(Book).filter(Book.id == book_id).one()
+	if request.method == 'POST':
+		session.delete(bookToDelete)
+		session.commit()
+		return redirect(url_for('showRecentBooks'))
+	else:
+		return render_template('delete.html', book = bookToDelete)
 
 if __name__ == '__main__':
 	app.secret_key = 'super_secret_key'
