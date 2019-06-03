@@ -1,8 +1,27 @@
-<!-- The Main HTML encapsulates all other templates --------------------------------------------------------->
+<!-- The Main HTML encapsulates all other templates ----------------------------->
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+		<!-- Pre-requisites for Oauth Login ----------------------------------------->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js">
+		</script>
+		<script src="https://apis.google.com/js/client:platform.js?onload=start" async defer>
+		</script>
+		<!-- Load auth2 library to initialize the GoogleAuth object ----------------->
+		<script>
+			function start()
+			{
+				gapi.load('auth2', function()
+				{
+					auth2 = gapi.auth2.init(
+					{
+						client_id: '798538115038-mrai88tsdqfqckdoa3qtlnb5l1mpms5m.apps.googleusercontent.com',
+						scope: 'profile email openid'
+					});
+				});
+			}
+		</script>
 	</head>
 	<body>
 		<div class="container">
