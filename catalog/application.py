@@ -33,12 +33,17 @@ def booksJSON():
 	books = session.query(Book).all()
 	return jsonify(books = [b.serialize for b in books])
 
-
 #--Specific Book JSON Endpoint---------------------------------------------------
 @app.route('/book/<int:book_id>/JSON')
-def restaurantMenuJSON(book_id):
+def specificBookJSON(book_id):
 	book = session.query(Book).filter(Book.id == book_id).one()
 	return jsonify(book = book.serialize)
+
+#--Specific User JSON Endpoint---------------------------------------------------
+@app.route('/user/<int:user_id>/JSON')
+def userJSON(user_id):
+	user = session.query(User).filter(User.id == user_id).one()
+	return jsonify(user = user.serialize)
 
 #--------------------------------------------------------------------------------
 # Website Route Functions
@@ -49,6 +54,20 @@ def restaurantMenuJSON(book_id):
 def showRecentBooks():
 	recentBooks = session.query(Book).order_by(desc(Book.id)).limit(10).all()
 	return render_template('listBooks.html', book_type = 'Recently Added', books = recentBooks)
+
+#--Show All Books----------------------------------------------------------------
+@app.route('/books/all')
+def showAllBooks():
+	books = session.query(Book).all()
+	return render_template('myAllBooks.html', book_type = "All", books = books)
+
+#--Show My Books----------------------------------------------------------------
+@app.route('/books/my')
+def showMyBooks():
+	if 'username' not in login_session:
+		return redirect('/login')
+	books = session.query(Book).filter(Book.user_id == login_session['user_id'])
+	return render_template('myAllBooks.html', book_type = "My", books = books)
 
 #--Show Specific Genre of Books--------------------------------------------------
 @app.route('/genre/<book_genre>')
@@ -66,10 +85,12 @@ def showBookInfo(book_title, book_id):
 #--Add Book Information----------------------------------------------------------
 @app.route('/book/add', methods=['GET','POST'])
 def addBook():
+	if 'username' not in login_session:
+		return redirect('/login')
 	if request.method == 'POST':
 		urlSafe = request.form['title'].replace(' ', '-').lower()
 		urlSafe = re.sub(r'[^a-zA-Z0-9-]', '', urlSafe)
-		newBook = Book(title = request.form['title'], urlSafeTitle = urlSafe, author = request.form['author'], description = request.form['description'], genre = request.form['genre'], user_id = 1)
+		newBook = Book(title = request.form['title'], urlSafeTitle = urlSafe, author = request.form['author'], description = request.form['description'], genre = request.form['genre'], user_id = login_session['user_id'])
 		session.add(newBook)
 		session.commit()
 		return redirect(url_for('showRecentBooks'))
@@ -80,7 +101,10 @@ def addBook():
 @app.route('/book/<int:book_id>/<book_title>/edit', methods=['GET','POST'])
 def editBook(book_title, book_id):
 	editedBook = session.query(Book).filter(Book.id == book_id).one()
-	print(editedBook.title)
+	if 'username' not in login_session:
+		return redirect('/login')
+	if editedBook.user_id != login_session['user_id']:
+		return "<script>function myFunction() {alert('You are not authorized to edit this book. Please create your own book in order to edit.');}</script><body onload='myFunction()'>"
 	if request.method == 'POST':
 		if request.form['title']:
 			editedBook.title = request.form['title']
@@ -103,6 +127,10 @@ def editBook(book_title, book_id):
 @app.route('/book/<int:book_id>/<book_title>/delete', methods=['GET','POST'])
 def deleteBook(book_title, book_id):
 	bookToDelete = session.query(Book).filter(Book.id == book_id).one()
+	if 'username' not in login_session:
+		return redirect('/login')
+	if bookToDelete.user_id != login_session['user_id']:
+		return "<script>function myFunction() {alert('You are not authorized to delete this book. Please create your own book in order to delete.');}</script><body onload='myFunction()'>"
 	if request.method == 'POST':
 		session.delete(bookToDelete)
 		session.commit()
