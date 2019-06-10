@@ -58,7 +58,7 @@ def showRecentBooks():
 #--Show All Books----------------------------------------------------------------
 @app.route('/books/all')
 def showAllBooks():
-	books = session.query(Book).all()
+	books = session.query(Book).order_by(Book.genre.asc(), Book.title.asc()).all()
 	return render_template('myAllBooks.html', book_type = "All", books = books)
 
 #--Show My Books----------------------------------------------------------------
@@ -66,7 +66,7 @@ def showAllBooks():
 def showMyBooks():
 	if 'username' not in login_session:
 		return redirect('/login')
-	books = session.query(Book).filter(Book.user_id == login_session['user_id'])
+	books = session.query(Book).filter(Book.user_id == login_session['user_id']).order_by(Book.genre.asc(), Book.title.asc())
 	return render_template('myAllBooks.html', book_type = "My", books = books)
 
 #--Show Specific Genre of Books--------------------------------------------------

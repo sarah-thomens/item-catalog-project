@@ -14,102 +14,21 @@
 			<a class="add-book-link" href="{{url_for('addBook')}}">Add Book</a>
 		</div>
 		<div class="genre-books">
-			<h3 class="genre-name">Classic</h3>
 			{% for book in books %}
-				{% if book.genre == "classic" %}
-					<li><a href="{{url_for('showBookInfo', book_title = book.urlSafeTitle, book_id = book.id)}}">
-						{{book.title}}
-					</a></li>
+				{% if loop.first %}
+					<h3 class="genre-name">{{book.genre.replace( '-', ' ' ).title()}}</h3>
+						<ul>
 				{% endif %}
-			{% endfor %}
-		</div>
-		<div class="genre-books">
-			<h3 class="genre-name">Crime</h3>
-			{% for book in books %}
-				{% if book.genre == "crime" %}
-					<li><a href="{{url_for('showBookInfo', book_title = book.urlSafeTitle, book_id = book.id)}}">
-						{{book.title}}
-					</a></li>
+				{% if loop.changed(book.genre) and not loop.first %}
+					</ul>
+					<h3 class="genre-name">{{book.genre.replace( '-', ' ' ).title()}}</h3>
+					<ul>
 				{% endif %}
-			{% endfor %}
-		</div>
-		<div class="genre-books">
-			<h3 class="genre-name">Fantasy</h3>
-			{% for book in books %}
-				{% if book.genre == "fantasy" %}
-					<li><a href="{{url_for('showBookInfo', book_title = book.urlSafeTitle, book_id = book.id)}}">
-						{{book.title}}
-					</a></li>
-				{% endif %}
-			{% endfor %}
-		</div>
-		<div class="genre-books">
-			<h3 class="genre-name">Historical Fiction</h3>
-			{% for book in books %}
-				{% if book.genre == "historical-fiction" %}
-					<li><a href="{{url_for('showBookInfo', book_title = book.urlSafeTitle, book_id = book.id)}}">
-						{{book.title}}
-					</a></li>
-				{% endif %}
-			{% endfor %}
-		</div>
-		<div class="genre-books">
-			<h3 class="genre-name">Magical Realism</h3>
-			{% for book in books %}
-				{% if book.genre == "magical-realism" %}
-					<li><a href="{{url_for('showBookInfo', book_title = book.urlSafeTitle, book_id = book.id)}}">
-						{{book.title}}
-					</a></li>
-				{% endif %}
-			{% endfor %}
-		</div>
-		<div class="genre-books">
-			<h3 class="genre-name">Mystery</h3>
-			{% for book in books %}
-				{% if book.genre == "mystery" %}
-					<li><a href="{{url_for('showBookInfo', book_title = book.urlSafeTitle, book_id = book.id)}}">
-						{{book.title}}
-					</a></li>
-				{% endif %}
-			{% endfor %}
-		</div>
-		<div class="genre-books">
-			<h3 class="genre-name">Science Fiction</h3>
-			{% for book in books %}
-				{% if book.genre == "science-fiction" %}
-					<li><a href="{{url_for('showBookInfo', book_title = book.urlSafeTitle, book_id = book.id)}}">
-						{{book.title}}
-					</a></li>
-				{% endif %}
-			{% endfor %}
-		</div>
-		<div class="genre-books">
-			<h3 class="genre-name">Suspense Thriller</h3>
-			{% for book in books %}
-				{% if book.genre == "suspense-thriller" %}
-					<li><a href="{{url_for('showBookInfo', book_title = book.urlSafeTitle, book_id = book.id)}}">
-						{{book.title}}
-					</a></li>
-				{% endif %}
-			{% endfor %}
-		</div>
-		<div class="genre-books">
-			<h3 class="genre-name">Romance</h3>
-			{% for book in books %}
-				{% if book.genre == "romance" %}
-					<li><a href="{{url_for('showBookInfo', book_title = book.urlSafeTitle, book_id = book.id)}}">
-						{{book.title}}
-					</a></li>
-				{% endif %}
-			{% endfor %}
-		</div>
-		<div class="genre-books">
-			<h3 class="genre-name">Dystopia</h3>
-			{% for book in books %}
-				{% if book.genre == "dystopia" %}
-					<li><a href="{{url_for('showBookInfo', book_title = book.urlSafeTitle, book_id = book.id)}}">
-						{{book.title}}
-					</a></li>
+				<li>
+					<a href="{{url_for('showBookInfo', book_title = book.urlSafeTitle, book_id = book.id)}}">{{book.title}}</a>
+				</li>
+				{% if loop.last %}
+					</ul>
 				{% endif %}
 			{% endfor %}
 		</div>
