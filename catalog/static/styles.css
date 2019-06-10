@@ -84,6 +84,11 @@ header nav
 	text-align: center;
 }
 
+.login-title
+{
+	width: 100%;
+}
+
 .username
 {
 	width: 10%;

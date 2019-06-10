@@ -5,8 +5,20 @@
 		<li class="links"><a href="#">All Books</a></li>
 	</nav>
 	<h1 class="page-title">My Book Catalog</h1>
-	<a class="username" href="#">Username</a>
+	{% if 'username' not in session %}
+		<div class="username"></div>
+	{% else %}
+		<div class="username">{{session.username}}</div>
+	{% endif %}
 	<div class="login-button-area">
-		<Button class="login-button">Login</Button>
+		{% if 'username' not in session %}
+			<a href = "{{url_for('showLogin')}}">
+				<Button class="login-button">Login</Button>
+			</a>
+		{% else %}
+			<a href = "{{url_for('disconnect')}}">
+				<Button class="login-button">Logout</Button>
+			</a>
+		{% endif %}
 	</div>
 </header>
