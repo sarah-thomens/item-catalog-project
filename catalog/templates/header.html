@@ -1,19 +1,34 @@
+<!--------------------------------------------------------------------------------
+ Header HTML
+
+ This template is the header for every page of the database website. It includes navigation links for showing Recent Books, All Books, and the User's personal books. It also includes the title of the site, the username if the user is logged in, and a Login or Logout button depending on if the user is logged in or not.
+--------------------------------------------------------------------------------->
 <header>
+	<!-- Site Navigation Links ---------------------------------------------------->
 	<nav>
+		<!-- Recent Books Link ------------------------------------------------------>
 		<li class="links"><a href="{{url_for('showRecentBooks')}}">Recently Added</a></li>
+		<!-- My Books Link (only if the user is signed in) -------------------------->
 		{% if 'username' not in session %}
 			<li class="links"></li>
 		{% else %}
 			<li class="links"><a href="{{url_for('showMyBooks')}}">My Books</a></li>
 		{% endif %}
+		<!-- All Books Link --------------------------------------------------------->
 		<li class="links"><a href="{{url_for('showAllBooks')}}">All Books</a></li>
 	</nav>
+
+	<!-- Site Title --------------------------------------------------------------->
 	<h1 class="page-title">My Book Catalog</h1>
+
+	<!-- Username (only if user is signed in) ------------------------------------->
 	{% if 'username' not in session %}
 		<div class="username"></div>
 	{% else %}
 		<div class="username">{{session.username}}</div>
 	{% endif %}
+
+	<!-- Login/Logout Button (depending on if user is logged in) ------------------>
 	<div class="login-button-area">
 		{% if 'username' not in session %}
 			<a href = "{{url_for('showLogin')}}">
