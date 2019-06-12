@@ -1,3 +1,12 @@
+<!--------------------------------------------------------------------------------
+ MyAllBooks HTML
+
+ This template shows a list of all books or a specific user's books depending on the function called and whether the user is logged in or not.
+
+ showAllBooks - shows all books listed in the database in order of title and genre.
+
+ showMyBooks - shows all books created by a specific user if that user is signed in. These books are ordered by genre and title.
+--------------------------------------------------------------------------------->
 {% extends "main.html" %}
 {% block content %}
 {% include "header.html" %}
@@ -10,20 +19,29 @@
 	</aside>
 	<section class="main">
 		<div class="page-headers">
+			<!-- Heading (showing either My Books or All Books) ----------------------->
 			<h2 class="book-header">{{book_type}} Books</h2>
+
+			<!-- Allows the user to add a book, if they are logged in  ---------------->
 			<a class="add-book-link" href="{{url_for('addBook')}}">Add Book</a>
 		</div>
 		<div class="genre-books">
+			<!-- Loop through all books ----------------------------------------------->
 			{% for book in books %}
+				<!-- If this is the first loop... --------------------------------------->
 				{% if loop.first %}
+					<!-- Add a genre heading of the first book's genre and start list ----->
 					<h3 class="genre-name">{{book.genre.replace( '-', ' ' ).title()}}</h3>
 						<ul>
 				{% endif %}
+				<!-- If the genre changed, and it's not the first loop ------------------>
 				{% if loop.changed(book.genre) and not loop.first %}
+					<!-- End the list and start next genre section ------------------------>
 					</ul>
 					<h3 class="genre-name">{{book.genre.replace( '-', ' ' ).title()}}</h3>
 					<ul>
 				{% endif %}
+				<!-- Add all books of that genre to the list ---------------------------->
 				<li>
 					<a href="{{url_for('showBookInfo', book_title = book.urlSafeTitle, book_id = book.id)}}">{{book.title}}</a>
 				</li>
