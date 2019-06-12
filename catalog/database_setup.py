@@ -38,7 +38,6 @@ class Book(Base):
 	urlSafeTitle = Column(String(250))
 	author = Column(String(250))
 	description = Column(String(500))
-	image = Column(String(250))
 	genre = Column(String(250))
 	user_id = Column(Integer, ForeignKey('user.id'))
 	user = relationship(User)
@@ -52,7 +51,6 @@ class Book(Base):
 			'urlSafeTitle': self.urlSafeTitle,
 			'author': self.author,
 			'description': self.description,
-			'image': self.image,
 			'genre': self.genre
 		}
 
