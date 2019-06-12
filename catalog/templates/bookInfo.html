@@ -1,3 +1,10 @@
+<!--------------------------------------------------------------------------------
+ BookInfo HTML
+
+ This template shows a specific book's information including title, author, description, and genre.
+
+ This template will also show buttons for editing and deleting the book depending on if the user created the book or not.
+--------------------------------------------------------------------------------->
 {% extends "main.html" %}
 {% block content %}
 {% include "header.html" %}
@@ -5,15 +12,25 @@
 <div class="main-and-sidebar-wrapper">
 	<section class="main book-info-main">
 		<div class="page-headers book-info-headers">
+			<!-- Book Title ----------------------------------------------------------->
 			<h2>{{book.title}}</h2>
+			<!-- Book Author ---------------------------------------------------------->
 			<h3>By: {{book.author}}</h3>
 		</div>
 		<div class="book-info">
+			<!-- Book Genre (edited to be a proper title) ----------------------------->
+			<div class="book-genre">
+				Genre: {{book.genre.replace( '-', ' ' ).title()}}
+			</div>
+			<!-- Book Description ----------------------------------------------------->
 			<p class="book-description">{{book.description}}</p>
 		</div>
+		<!-- If the user is signed in, these buttons will appear -------------------->
 		{% if session.user_id == book.user_id %}
 			<div class="book-buttons">
+				<!-- Edit Button -------------------------------------------------------->
 				<a class="edit-button" href="{{url_for('editBook', book_title = book.urlSafeTitle, book_id = book.id)}}">Edit</a>
+				<!-- Delete Button ------------------------------------------------------>
 				<a class="delete-button" href="{{url_for('deleteBook', book_title = book.urlSafeTitle, book_id = book.id)}}">Delete</a>
 			</div>
 		{% endif %}
