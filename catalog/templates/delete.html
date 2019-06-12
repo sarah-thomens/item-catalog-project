@@ -1,3 +1,8 @@
+<!--------------------------------------------------------------------------------
+ Delete HTML
+
+ This template will delete a book from the database if the user is signed in and created the book.
+--------------------------------------------------------------------------------->
 {% extends "main.html" %}
 {% block content %}
 {% include "header.html" %}
@@ -8,10 +13,12 @@
 			<h2 class="book-header">Are You Sure You Want to Delete {{book.title}}?</h2>
 		</div>
 		<form action="#" method = 'post'>
+			<!-- Delete Button -------------------------------------------------------->
 			<button type="submit" id="submit">
 				<span aria-hidden="true"></span>Delete
 			</button>
 		</form>
+		<!-- Cancel Button ---------------------------------------------------------->
 		<a href = "{{url_for('showBookInfo', book_title = book.urlSafeTitle, book_id = book.id)}}">
 			<span aria-hidden="true"></span>Cancel
 		</a>
