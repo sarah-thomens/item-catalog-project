@@ -299,6 +299,7 @@ def gdisconnect():
 		response.headers['Content-Type'] = 'application/json'
 		return response
 
+
 #--Get User Id using Email Helper Function---------------------------------------
 def getUserID(email):
 	try:
@@ -307,10 +308,12 @@ def getUserID(email):
 	except:
 		return None
 
+
 #--Get User Information using User ID Helper Function----------------------------
 def getUserInfo(user_id):
 	user = session.query(User).filter(User.id == user_id).one()
 	return user
+
 
 #--Create User using the Login Session Helper Function---------------------------
 def createUser(login_session):
