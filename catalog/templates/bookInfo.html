@@ -9,7 +9,6 @@
 			<h3>By: {{book.author}}</h3>
 		</div>
 		<div class="book-info">
-			<img src="{{book.image}}" alt="{{book.title}}" height="300" width="200">
 			<p class="book-description">{{book.description}}</p>
 		</div>
 		{% if session.user_id == book.user_id %}

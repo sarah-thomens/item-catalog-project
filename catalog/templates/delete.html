@@ -12,10 +12,8 @@
 				<span aria-hidden="true"></span>Delete
 			</button>
 		</form>
-		<a href = "{{url_for('showBookInfo', book_title = book.title, book_id = book.id)}}">
-			<button>
-				<span aria-hidden="true"></span>Cancel
-			</button>
+		<a href = "{{url_for('showBookInfo', book_title = book.urlSafeTitle, book_id = book.id)}}">
+			<span aria-hidden="true"></span>Cancel
 		</a>
 	</section>
 </div>

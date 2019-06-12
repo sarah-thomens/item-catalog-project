@@ -15,12 +15,14 @@ import requests
 
 app = Flask(__name__)
 
+#--Save the client ID from the client secret file--------------------------------
 CLIENT_ID = json.loads(open('client_secrets.json', 'r').read())['web']['client_id']
 
 #--Connect to Database and create database session-------------------------------
 engine = create_engine('sqlite:///booksCatalog.db', connect_args={'check_same_thread': False})
 Base.metadata.bind = engine
 
+#--Creating a session for the Database--------------------------------------------
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
@@ -33,17 +35,20 @@ def booksJSON():
 	books = session.query(Book).all()
 	return jsonify(books = [b.serialize for b in books])
 
+
 #--Specific Book JSON Endpoint---------------------------------------------------
 @app.route('/book/<int:book_id>/JSON')
 def specificBookJSON(book_id):
 	book = session.query(Book).filter(Book.id == book_id).one()
 	return jsonify(book = book.serialize)
 
+
 #--Specific User JSON Endpoint---------------------------------------------------
 @app.route('/user/<int:user_id>/JSON')
 def userJSON(user_id):
 	user = session.query(User).filter(User.id == user_id).one()
 	return jsonify(user = user.serialize)
+
 
 #--------------------------------------------------------------------------------
 # Website Route Functions
@@ -55,13 +60,15 @@ def showRecentBooks():
 	recentBooks = session.query(Book).order_by(desc(Book.id)).limit(10).all()
 	return render_template('listBooks.html', book_type = 'Recently Added', books = recentBooks)
 
+
 #--Show All Books----------------------------------------------------------------
 @app.route('/books/all')
 def showAllBooks():
 	books = session.query(Book).order_by(Book.genre.asc(), Book.title.asc()).all()
 	return render_template('myAllBooks.html', book_type = "All", books = books)
 
-#--Show My Books----------------------------------------------------------------
+
+#--Show My Books (Specific User Books)-------------------------------------------
 @app.route('/books/my')
 def showMyBooks():
 	if 'username' not in login_session:
@@ -69,27 +76,33 @@ def showMyBooks():
 	books = session.query(Book).filter(Book.user_id == login_session['user_id']).order_by(Book.genre.asc(), Book.title.asc())
 	return render_template('myAllBooks.html', book_type = "My", books = books)
 
+
 #--Show Specific Genre of Books--------------------------------------------------
 @app.route('/genre/<book_genre>')
 def showGenreBooks(book_genre):
+	#--Editing genre from URL safe to standard title look------------------------
 	editGenre = book_genre.replace( '-', ' ' ).title()
 	genreBooks = session.query(Book).filter(Book.genre == book_genre)
 	return render_template('listBooks.html', book_type = editGenre, books = genreBooks)
 
-#--Show Book Information---------------------------------------------------------
+
+#--Show Book Information (Read)--------------------------------------------------
 @app.route('/book/<int:book_id>/<book_title>')
 def showBookInfo(book_title, book_id):
 	book = session.query(Book).filter(Book.id == book_id).one()
 	return render_template('bookInfo.html', book = book)
 
-#--Add Book Information----------------------------------------------------------
+
+#--Add Book Information (Create)-------------------------------------------------
 @app.route('/book/add', methods=['GET','POST'])
 def addBook():
 	if 'username' not in login_session:
 		return redirect('/login')
 	if request.method == 'POST':
+		#--Creating a URL safe version of the title------------------------------
 		urlSafe = request.form['title'].replace(' ', '-').lower()
 		urlSafe = re.sub(r'[^a-zA-Z0-9-]', '', urlSafe)
+
 		newBook = Book(title = request.form['title'], urlSafeTitle = urlSafe, author = request.form['author'], description = request.form['description'], genre = request.form['genre'], user_id = login_session['user_id'])
 		session.add(newBook)
 		session.commit()
@@ -97,7 +110,8 @@ def addBook():
 	else:
 		return render_template('addEdit.html')
 
-#--Edit Book Information---------------------------------------------------------
+
+#--Edit Book Information (Update)------------------------------------------------
 @app.route('/book/<int:book_id>/<book_title>/edit', methods=['GET','POST'])
 def editBook(book_title, book_id):
 	editedBook = session.query(Book).filter(Book.id == book_id).one()

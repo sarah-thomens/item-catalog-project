@@ -36,6 +36,15 @@
 				</button>
 			</div>
 		</form>
+		{% if book %}
+			<a href = "{{url_for('showBookInfo', book_title = book.urlSafeTitle, book_id = book.id)}}">
+				<span aria-hidden="true"></span>Cancel
+			</a>
+		{% else %}
+			<a href = "{{url_for('showRecentBooks')}}">
+				<span aria-hidden="true"></span>Cancel
+			</a>
+		{% endif %}
 	</section>
 </div>
 
