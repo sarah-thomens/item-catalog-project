@@ -1,3 +1,12 @@
+<!--------------------------------------------------------------------------------
+ AddEdit HTML
+
+ This template controls both the add and edit functions of the site. The function activated is what determines how this template is used.
+
+ addBook - shows a blank form for a user to fill out a title, author, description, and genre to create a new book to add to the database.
+
+ editBook - shows a pre-filled form of the book the user wishes to edit. The user can then update the title, auther, description, and genre to edit the book and make the change to the database.
+--------------------------------------------------------------------------------->
 {% extends "main.html" %}
 {% block content %}
 {% include "header.html" %}
@@ -5,19 +14,29 @@
 <div class="main-and-sidebar-wrapper">
 	<section class="main">
 		<div class="page-headers">
-			<h2 class="book-header">Add a New Book</h2>
+			<!-- Title of page depending on if Adding book or Editing ----------------->
+			{% if book %}
+				<h2 class="book-header">Edit {{book.title}}</h2>
+			{% else %}
+				<h2 class="book-header">Add a New Book</h2>
+			{% endif %}
 		</div>
+		<!-- Adding and Editing Form Fields ----------------------------------------->
 		<form action="#" method = "post">
 			<div class="form-group">
+				<!-- Title -------------------------------------------------------------->
 				<label for="title">Title:</label>
 				<input type="text" maxlength="500" class="form-control" name="title" placeholder="Book Title" {% if book %} value="{{book.title}}"{% endif %}>
 
+				<!-- Author ------------------------------------------------------------->
 				<label for="author">Author:</label>
 				<input type="text" maxlength="250" class="form-control" name="author" placeholder="Book Author" {% if book %} value="{{book.author}}"{% endif %}>
 
+				<!-- Description -------------------------------------------------------->
 				<label for="description">Description:</label>
 				<textarea class="form-control" maxlength="250" rows="3" name="description" placeholder="Book Description">{% if book %} {{book.description}}{% endif %}</textarea>
 
+				<!-- Genre Dropdown Menu ------------------------------------------------>
 				<label for="genre">Genre:</label>
 				<select name="genre">
 					<option value="classic" {% if book and book.genre == 'classic' %} selected {% endif %}>Classic</option>
@@ -31,11 +50,15 @@
 					<option value="romance" {% if book and book.genre == 'romance' %} selected {% endif %}>Romance</option>
 					<option value="dystopia" {% if book and book.genre == 'dystopia' %} selected {% endif %}>Dystopia</option>
 				</select>
+
+				<!-- Submit Button ------------------------------------------------------>
 				<button type="submit" id="submit">
 					<span aria-hidden="true"></span>{% if book %}Edit {% else %}Create {% endif %}
 				</button>
 			</div>
 		</form>
+
+		<!-- Cancel Button (Redirect depends on if Adding or Editing) --------------->
 		{% if book %}
 			<a href = "{{url_for('showBookInfo', book_title = book.urlSafeTitle, book_id = book.id)}}">
 				<span aria-hidden="true"></span>Cancel
