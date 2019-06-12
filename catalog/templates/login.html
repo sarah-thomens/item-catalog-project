@@ -1,6 +1,12 @@
+<!--------------------------------------------------------------------------------
+ Login HTML
+
+ This template allows the user to log in using an outside authentication source. Currently we are using the Google sign-in OAuth.
+--------------------------------------------------------------------------------->
 {% extends "main.html" %}
 {% block content %}
 
+<!-- No visible login button or navigation. Do not include header.html ---------->
 <header>
 	<h1 class="page-title login-title">My Book Catalog</h1>
 </header>
@@ -24,15 +30,14 @@
 			{
 				if (authResult['code'])
 				{
-					// Hide the sign-in button now that the user is authorized
+					//--Hide the sign-in button now that the user is authorized-------------
 					$('#signinButton').attr('style', 'display: none');
 
-					// Send the code to the server
+					//--Send the code to the server-----------------------------------------
 					$.ajax({
 						type: 'POST',
 						url: '/gconnect?state={{STATE}}',
-						// Always include an `X-Requested-With` header in every AJAX request,
-						// to protect against CSRF attacks.
+						//--`X-Requested-With` header to protect against CSRF attacks---------
 						headers: {
 							'X-Requested-With': 'XMLHttpRequest'
 						},
