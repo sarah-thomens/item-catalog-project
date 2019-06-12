@@ -1,3 +1,8 @@
+<!--------------------------------------------------------------------------------
+ LogoutError HTML
+
+ This template lets the user know there was an error when trying to log out of the application. It includes a button to return to the main page of recently added books.
+--------------------------------------------------------------------------------->
 {% extends "main.html" %}
 {% block content %}
 {% include "header.html" %}
@@ -7,6 +12,8 @@
 		<div class="page-headers book-info-headers">
 			<h2>There was an error when logging out.</h2>
 		</div>
+
+		<!-- Return to Main Page Button --------------------------------------------->
 		<div>
 			<a class="return-button" href="{{url_for('showRecentBooks')}}">Return</a>
 		</div>
