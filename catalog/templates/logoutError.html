@@ -1,0 +1,16 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+<div class="main-and-sidebar-wrapper">
+	<section class="main book-info-main">
+		<div class="page-headers book-info-headers">
+			<h2>There was an error when logging out.</h2>
+		</div>
+		<div>
+			<a class="return-button" href="{{url_for('showRecentBooks')}}">Return</a>
+		</div>
+	</section>
+</div>
+
+{% endblock %}

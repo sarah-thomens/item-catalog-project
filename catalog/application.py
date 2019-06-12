@@ -122,6 +122,7 @@ def editBook(book_title, book_id):
 	if request.method == 'POST':
 		if request.form['title']:
 			editedBook.title = request.form['title']
+			#--Creating a URL safe version of the title--------------------------
 			urlSafe = request.form['title'].replace(' ', '-').lower()
 			urlSafe = re.sub(r'[^a-zA-Z0-9-]', '', urlSafe)
 			editedBook.urlSafeTitle = urlSafe
@@ -137,7 +138,8 @@ def editBook(book_title, book_id):
 	else:
 		return render_template('addEdit.html', book = editedBook)
 
-#--Delete Book Information-------------------------------------------------------
+
+#--Delete Book Information (Delete)----------------------------------------------
 @app.route('/book/<int:book_id>/<book_title>/delete', methods=['GET','POST'])
 def deleteBook(book_title, book_id):
 	bookToDelete = session.query(Book).filter(Book.id == book_id).one()
@@ -152,6 +154,7 @@ def deleteBook(book_title, book_id):
 	else:
 		return render_template('delete.html', book = bookToDelete)
 
+
 #--------------------------------------------------------------------------------
 # Website Login and Login Route Functions
 #--------------------------------------------------------------------------------
@@ -162,17 +165,19 @@ def showLogin():
 	login_session['state'] = state
 	return render_template('login.html', STATE=state)
 
+
+#--Disconnect Route--------------------------------------------------------------
 @app.route('/disconnect')
 def disconnect():
+	#--Allows app to be scalable and have other auth verification in future------
 	if 'provider' in login_session:
+		#--Google authentication disconnect--------------------------------------
 		if login_session['provider'] == 'google':
 			gdisconnect()
 			del login_session['gplus_id']
 			del login_session['access_token']
-		if login_session['provider'] == 'facebook':
-			fbdisconnect()
-			del login_session['facebook_id']
 
+		#--Delete everything in the login session when disconnecting-------------
 		del login_session['username']
 		del login_session['email']
 		del login_session['picture']
@@ -180,7 +185,9 @@ def disconnect():
 		del login_session['provider']
 		return redirect(url_for('showRecentBooks'))
 	else:
-		return redirect(url_for('showRecentBooks'))
+		#--Let the user know if there was an error logging out-------------------
+		return render_template('logoutError.html')
+
 
 #--Gconnect route to connect using Google+ Oauth---------------------------------
 @app.route('/gconnect', methods=['POST'])
@@ -225,7 +232,7 @@ def gconnect():
 		print "Token's client ID does not match app's."
 		response.headers['Content-Type'] = 'application/json'
 		return response
-	# Check to see if user is already logged in
+	#--Check to see if user is already logged in---------------------------------
 	stored_access_token = login_session.get('access_token')
 	stored_gplus_id = login_session.get('gplus_id')
 	if stored_access_token is not None and gplus_id == stored_gplus_id:
@@ -233,12 +240,12 @@ def gconnect():
 		response.headers['Content-Type'] = 'application/json'
 		return response
 
-	# Store the access token in the session for later use.
+	#--Store the access token in the session for later use.----------------------
 	login_session['provider'] = 'google'
 	login_session['access_token'] = credentials.access_token
 	login_session['gplus_id'] = gplus_id
 
-	# Get user info
+	#--Get user info-------------------------------------------------------------
 	userinfo_url = "https://www.googleapis.com/oauth2/v1/userinfo"
 	params = {'access_token': credentials.access_token, 'alt':'json'}
 	answer = requests.get(userinfo_url, params=params)
@@ -249,7 +256,7 @@ def gconnect():
 	login_session['picture'] = data['picture']
 	login_session['email'] = data['email']
 
-	# See if user exists, if it doesn't make a new one
+	#--See if user exists, if it doesn't make a new one--------------------------
 	user_id = getUserID(login_session['email'])
 	if not user_id:
 		user_id = createUser(login_session)
@@ -268,16 +275,16 @@ def gconnect():
 	return output
 
 
-# DISCONNECT - Revoke a current user's token and reset their login_session.
+#--GDisconnect - Revoke a current user's token and reset their login_session.----
 @app.route("/gdisconnect")
 def gdisconnect():
-	# Only disconnect a connected user.
+	#--Only disconnect a connected user.-----------------------------------------
 	access_token = login_session.get('access_token')
 	if access_token is None:
 		response = make_response(json.dumps('Current user not connected.'), 401)
 		response.headers['Content-Type'] = 'application/json'
 		return response
-	# Execute HTTP GET request to revoke current token.
+	#--Execute HTTP GET request to revoke current token.-------------------------
 	url = 'https://accounts.google.com/o/oauth2/revoke?token=%s' % access_token
 	h = httplib2.Http()
 	result = h.request(url, 'GET')[0]
@@ -287,7 +294,7 @@ def gdisconnect():
 		response.headers['Content-Type'] = 'application/json'
 		return response
 	else:
-		# For whatever reason, the given token was invalid.
+		#--For whatever reason, the given token was invalid.---------------------
 		response = make_response(json.dumps('Failed to revoke token for given user.'), 400)
 		response.headers['Content-Type'] = 'application/json'
 		return response
