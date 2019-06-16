@@ -121,13 +121,14 @@ header nav
 
 .login-button
 {
-	width: 70px;
+	width: 80px;
 	font-size: 20px;
 	color: white;
 	background-color: navy;
 	height: 50px;
 	margin-top: auto;
 	margin-bottom: auto;
+	padding: 8px;
 }
 
 .login-button:hover
@@ -201,6 +202,40 @@ header nav
 	display: flex;
 	justify-content: space-between;
 }
+
+/*--Login Page CSS-------------------------------------------------------------*/
+.google-login
+{
+	margin-left: auto;
+	margin-right: auto;
+	color: blue;
+}
+
+.google-button
+{
+	text-align: center;
+}
+
+#signinButton
+{
+	display: inline-block;
+	background: DodgerBlue;
+	color: white;
+	width: 190px;
+	border-radius: 5px;
+	border: none;
+	box-shadow: 1px 1px 1px grey;
+	white-space: nowrap;
+	font-size: 16px;
+	padding: 5px;
+}
+
+#signinButton:hover
+{
+	background: white;
+	color: DodgerBlue;
+}
+
 
 /*-------------------------------------------------------------------------------
  Responsive CSS Code
