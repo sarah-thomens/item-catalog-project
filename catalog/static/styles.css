@@ -213,8 +213,40 @@ header nav
 	justify-content: space-between;
 }
 
+/*--Add/Edit Book Pages CSS----------------------------------------------------*/
+.add-edit-header
+{
+	color: red;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.form-info
+{
+	width: 350px;
+	padding: 15px;
+	background: lightgreen;
+	display: flex;
+	flex-direction: column;
+	border: 1px solid darkgreen;
+	border-radius: 5px;
+	line-height: 40px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.buttons
+{
+	display: flex;
+	flex-direction: row;
+	display: inline-block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 /*--Delete Book Page CSS-------------------------------------------------------*/
-.book-header
+.delete-header
 {
 	color: red;
 	text-align: center;
@@ -299,8 +331,6 @@ header nav
 	color: orange;
 	margin-bottom: 0;
 }
-
-
 
 /*-------------------------------------------------------------------------------
  Responsive CSS Code
