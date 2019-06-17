@@ -136,7 +136,7 @@ header nav
 	height: 50px;
 	margin-top: auto;
 	margin-bottom: auto;
-	padding: 8px;
+	padding: 0;
 }
 
 .login-button:hover
@@ -202,6 +202,7 @@ header nav
 {
 	list-style: none;
 	line-height: 30px;
+	margin-top: 0;
 }
 
 /*--Book Information Page CSS--------------------------------------------------*/
@@ -243,6 +244,14 @@ header nav
 	background: white;
 	color: DodgerBlue;
 }
+
+/*--My/All Pages CSS-----------------------------------------------------------*/
+.genre-name
+{
+	color: orange;
+	margin-bottom: 0;
+}
+
 
 
 /*-------------------------------------------------------------------------------

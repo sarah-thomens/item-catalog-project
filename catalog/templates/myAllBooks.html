@@ -32,14 +32,14 @@
 				{% if loop.first %}
 					<!-- Add a genre heading of the first book's genre and start list ----->
 					<h3 class="genre-name">{{book.genre.replace( '-', ' ' ).title()}}</h3>
-						<ul>
+						<ul class="books-list">
 				{% endif %}
 				<!-- If the genre changed, and it's not the first loop ------------------>
 				{% if loop.changed(book.genre) and not loop.first %}
 					<!-- End the list and start next genre section ------------------------>
 					</ul>
 					<h3 class="genre-name">{{book.genre.replace( '-', ' ' ).title()}}</h3>
-					<ul>
+					<ul class="books-list">
 				{% endif %}
 				<!-- Add all books of that genre to the list ---------------------------->
 				<li>
