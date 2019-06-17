@@ -112,6 +112,14 @@ header nav
 	margin-right: 10px;
 }
 
+.login:hover
+{
+	text-shadow: none;
+	padding: 0px;
+	border: none;
+	border-radius: 0px;
+}
+
 .login-button-area
 {
 	width: 10%;
