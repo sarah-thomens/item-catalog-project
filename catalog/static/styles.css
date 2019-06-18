@@ -207,10 +207,35 @@ header nav
 }
 
 /*--Book Information Page CSS--------------------------------------------------*/
+.book-information
+{
+	width: 350px;
+	padding: 15px;
+	background: lightgreen;
+	display: flex;
+	flex-direction: column;
+	border: 1px solid darkgreen;
+	border-radius: 5px;
+	line-height: 40px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 50px;
+}
+
 .book-info-headers
 {
 	display: flex;
-	justify-content: space-between;
+	flex-direction: column;
+}
+
+.book-title
+{
+	margin: 0;
+}
+
+.book-author
+{
+	margin: 0;
 }
 
 /*--Add/Edit Book Pages CSS----------------------------------------------------*/
@@ -234,6 +259,21 @@ header nav
 	line-height: 40px;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+.form-label
+{
+	display: inline-block;
+	float: left;
+	clear: left;
+	width: 110px;
+	margin-left: 20px;
+}
+
+.form-control
+{
+	display: inline-block;
+	float: left;
 }
 
 .buttons

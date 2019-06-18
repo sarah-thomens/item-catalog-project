@@ -27,26 +27,26 @@
 				<div class="form-group">
 					<div class="form-info"
 						<!-- Title ---------------------------------------------------------->
-						<div class="title-box"
-							<label for="title">Title:</label>
+						<div class="title-box">
+							<label for="title" class="form-label">Title:</label>
 							<input type="text" maxlength="500" class="form-control" name="title" placeholder="Book Title" {% if book %} value="{{book.title}}"{% endif %}>
 						</div>
 
 						<!-- Author --------------------------------------------------------->
 						<div class="author-box">
-							<label for="author">Author:</label>
+							<label for="author" class="form-label">Author:</label>
 							<input type="text" maxlength="250" class="form-control" name="author" placeholder="Book Author" {% if book %} value="{{book.author}}"{% endif %}>
 						</div>
 
 						<!-- Description ---------------------------------------------------->
 						<div class="description-box">
-							<label for="description">Description:</label>
+							<label for="description" class="form-label">Description:</label>
 							<textarea class="form-control" maxlength="250" rows="3" name="description" placeholder="Book Description">{% if book %} {{book.description}}{% endif %}</textarea>
 						</div>
 
 						<!-- Genre Dropdown Menu -------------------------------------------->
 						<div class="genre-box">
-							<label for="genre">Genre:</label>
+							<label for="genre" class="form-label">Genre:</label>
 							<select name="genre">
 								<option value="classic" {% if book and book.genre == 'classic' %} selected {% endif %}>Classic</option>
 								<option value="crime" {% if book and book.genre == 'crime' %} selected {% endif %}>Crime</option>
@@ -61,12 +61,12 @@
 							</select>
 						</div>
 						<div class="buttons">
-							<!-- Submit Button ---------------------------------------------------->
+							<!-- Submit Button ------------------------------------------------>
 							<button type="submit" id="submit">
 								<span aria-hidden="true"></span>{% if book %}Edit {% else %}Create {% endif %}
 							</button>
 
-							<!-- Cancel Button (Redirect depends on if Adding or Editing) ------------->
+							<!-- Cancel Button (Redirect depends on if Adding or Editing) ----->
 							{% if book %}
 								<a href = "{{url_for('showBookInfo', book_title = book.urlSafeTitle, book_id = book.id)}}">
 									<span aria-hidden="true"></span>Cancel
