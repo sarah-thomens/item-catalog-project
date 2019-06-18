@@ -220,12 +220,14 @@ header nav
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 50px;
+	text-align: center;
 }
 
 .book-info-headers
 {
 	display: flex;
 	flex-direction: column;
+	border-bottom: 1px solid grey;
 }
 
 .book-title
@@ -236,6 +238,24 @@ header nav
 .book-author
 {
 	margin: 0;
+	font-size: 14px;
+}
+
+.book-genre
+{
+	margin-top: 15px;
+	text-align: left;
+}
+
+.book-description
+{
+	margin-top: 0;
+	text-align: left;
+}
+
+.edit-button
+{
+	margin-right: 10px;
 }
 
 /*--Add/Edit Book Pages CSS----------------------------------------------------*/
