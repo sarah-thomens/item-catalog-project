@@ -251,6 +251,7 @@ header nav
 {
 	margin-top: 0;
 	text-align: left;
+	line-height: 16px;
 }
 
 .edit-button
@@ -575,5 +576,22 @@ header nav
 	{
 		padding-left: 0;
 		font-size: 15px;
+	}
+
+	.book-information
+	{
+		width: 300px;
+	}
+
+	.form-info
+	{
+		width: 300px;
+		padding: 5px;
+	}
+
+	.form-label
+	{
+		margin-left: 10px;
+		width: 100px;
 	}
 }
