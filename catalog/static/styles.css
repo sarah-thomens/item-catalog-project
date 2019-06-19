@@ -325,12 +325,7 @@ header nav
 
 .delete
 {
-	margin-right: 50px;
-}
-
-.delete-cancel
-{
-	margin-left: 5px;
+	margin-bottom: 10px;
 }
 
 /*--Delete/Add/Edit Button CSS-------------------------------------------------*/
