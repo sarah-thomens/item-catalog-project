@@ -1,17 +1,17 @@
 /*--GENERAL CSS----------------------------------------------------------------*/
 a
 {
-	color: #CE2D4F;
+	color: #3b60a5;
 	text-decoration: none;
 }
 
 a:hover
 {
-	color: #CE2D4F;
-	text-shadow: 1px 1px #8d6a9f;
+	color: #3b60a5;
+	text-shadow: 1px 1px #6f2dbd;
 	padding: 5px;
-	border: 2px solid #8d6a9f;
-	border-radius: 20px;
+	border: 2px solid #6f2dbd;
+	border-radius: 10px;
 }
 
 button
@@ -69,7 +69,7 @@ header
 	display: flex;
 	flex-direction: row;
 	height: 100px;
-	background-color: #150578;
+	background-color: #2a1b84;
 }
 
 header nav
