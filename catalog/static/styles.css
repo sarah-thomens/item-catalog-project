@@ -7,8 +7,16 @@ a
 
 a:hover
 {
+<<<<<<< HEAD
 	color: #3b60a5;
 	text-shadow: 1px 1px #6f2dbd;
+||||||| merged common ancestors
+	color: #CE2D4F;
+	text-shadow: 1px 1px #8d6a9f;
+=======
+	color: #3b60a5;
+	text-shadow: 1px 1px #8d6a9f;
+>>>>>>> 4b34eacfcc9585390351d20469678e03a9f6125c
 	padding: 5px;
 	border: 2px solid #6f2dbd;
 	border-radius: 10px;
