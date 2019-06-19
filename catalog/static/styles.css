@@ -1,30 +1,30 @@
 /*--GENERAL CSS----------------------------------------------------------------*/
 a
 {
-	color: midnightblue;
+	color: #CE2D4F;
 	text-decoration: none;
 }
 
 a:hover
 {
-	color: hotpink;
-	text-shadow: 1px 1px pink;
+	color: #CE2D4F;
+	text-shadow: 1px 1px #8d6a9f;
 	padding: 5px;
-	border: 1px solid pink;
+	border: 2px solid #8d6a9f;
 	border-radius: 20px;
 }
 
 button
 {
-	color: white;
-	background-color: navy;
+	color: #F0D3F7;
+	background-color: #150578;
 	border-radius: 5px;
 }
 
 button:hover
 {
-	color: navy;
-	background-color: white;
+	color: #150578;
+	background-color: #F0D3F7;
 }
 
 
@@ -54,7 +54,7 @@ body
 	font-family: Arial Rounded MT Bold;
 	margin-left: auto;
 	margin-right: auto;
-	background-color: LightSkyBlue;
+	background-color: #F0d3F7;
 }
 
 .container
@@ -69,7 +69,7 @@ header
 	display: flex;
 	flex-direction: row;
 	height: 100px;
-	background-color: purple;
+	background-color: #150578;
 }
 
 header nav
@@ -90,7 +90,7 @@ header nav
 	font-family: "Helvetica Neue Light", Roboto, Helvetica, Arial, sans-serif;
 	font-size: 50px;
 	font-weight: bold;
-	color: midnightblue;
+	color: #F0D3F7;
 	line-height: 70px;
 	font-weight: 300;
 	margin-top: 20px;
@@ -105,6 +105,7 @@ header nav
 
 .username
 {
+	color: #F0D3F7;
 	width: 10%;
 	margin-top: auto;
 	margin-bottom: auto;
@@ -132,8 +133,9 @@ header nav
 {
 	width: 80px;
 	font-size: 20px;
-	color: white;
-	background-color: navy;
+	color: #F0d3F7;
+	background-color: #150578;
+	border-color: #F0d3F7;
 	height: 50px;
 	margin-top: auto;
 	margin-bottom: auto;
@@ -142,8 +144,8 @@ header nav
 
 .login-button:hover
 {
-	color: navy;
-	background-color: white;
+	color: #150578;
+	background-color: #F0d3F7;
 }
 
 /*-------------------------------------------------------------------------------
@@ -162,7 +164,12 @@ header nav
 	flex: 1;
 	max-width: 300px;
 	padding-left: 20px;
-	background-color: green;
+	background-color: #B98EA7;
+}
+
+.genre-title
+{
+	color: #4B0082;
 }
 
 .genres-list
@@ -199,6 +206,11 @@ header nav
 	padding-top: 15px;
 }
 
+.book-header
+{
+	color: #4B0082;
+}
+
 .books-list
 {
 	list-style: none;
@@ -211,10 +223,11 @@ header nav
 {
 	width: 350px;
 	padding: 15px;
-	background: lightgreen;
+	color: #150578;
+	background: #B98EA7;
 	display: flex;
 	flex-direction: column;
-	border: 1px solid darkgreen;
+	border: 1px solid #150578;
 	border-radius: 5px;
 	line-height: 40px;
 	margin-left: auto;
@@ -227,7 +240,7 @@ header nav
 {
 	display: flex;
 	flex-direction: column;
-	border-bottom: 1px solid grey;
+	border-bottom: 1px solid #150578;
 }
 
 .book-title
@@ -262,7 +275,7 @@ header nav
 /*--Add/Edit Book Pages CSS----------------------------------------------------*/
 .add-edit-header
 {
-	color: red;
+	color: #4B0082;
 	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
@@ -272,10 +285,11 @@ header nav
 {
 	width: 350px;
 	padding: 15px;
-	background: lightgreen;
+	color: #150578;
+	background: #B98EA7;
 	display: flex;
 	flex-direction: column;
-	border: 1px solid darkgreen;
+	border: 1px solid #150578;
 	border-radius: 5px;
 	line-height: 40px;
 	margin-left: auto;
@@ -309,7 +323,7 @@ header nav
 /*--Delete Book Page CSS-------------------------------------------------------*/
 .delete-header
 {
-	color: red;
+	color: #4B0082;
 	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
@@ -332,8 +346,9 @@ header nav
 /*--Delete/Add/Edit Button CSS-------------------------------------------------*/
 #submit
 {
-	color: white;
-	background: navy;
+	color: #F0D3F7;
+	background: #150578;
+	border-color: #F0d3F7;
 	width: 100px;
 	border-radius: 5px;
 	white-space: nowrap;
@@ -343,8 +358,8 @@ header nav
 
 #submit:hover
 {
-	color: navy;
-	background: white;
+	color: #150578;
+	background: #F0D3F7;
 }
 
 
@@ -353,7 +368,7 @@ header nav
 {
 	margin-left: auto;
 	margin-right: auto;
-	color: blue;
+	color: #4B0082;
 }
 
 .google-button
@@ -384,7 +399,7 @@ header nav
 /*--My/All Pages CSS-----------------------------------------------------------*/
 .genre-name
 {
-	color: orange;
+	color: #4B0082;
 	margin-bottom: 0;
 }
 
