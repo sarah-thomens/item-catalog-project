@@ -18,10 +18,10 @@ session.commit()
 book = Book(user_id=1, title="Uprooted", urlSafeTitle="uprooted",
             author="Naomi Novik",
             description=("A young village woman named Agnieszka, is born in" +
-                          " a year where she is eligible to be taken by the" +
-                          " Dragon - a powerful wizard who protects her" +
-                          " village and the rest of the kingdom from the" +
-                          " encroaching evil of the poisoned Wood."),
+                         " a year where she is eligible to be taken by the" +
+                         " Dragon - a powerful wizard who protects her" +
+                         " village and the rest of the kingdom from the" +
+                         " encroaching evil of the poisoned Wood."),
             genre="fantasy")
 session.add(book)
 session.commit()
@@ -34,9 +34,9 @@ book = Book(user_id=1, title="There's No Place Like Here",
                          " is obscured. Nothing is familiar. A clearing up" +
                          " ahead reveals a camp site, and it's there that" +
                          " Sandy discovers the impossible: she has" +
-                         " inadvertently stumbled upon the place-- and people" +
-                         "--she's been looking for all her life, a land where" +
-                         " all the missing people go."),
+                         " inadvertently stumbled upon the place-- and" +
+                         " people--she's been looking for all her life, a" +
+                         " land where all the missing people go."),
             genre="magical-realism")
 session.add(book)
 session.commit()
