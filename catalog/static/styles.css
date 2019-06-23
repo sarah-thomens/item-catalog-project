@@ -397,24 +397,35 @@ header nav
 }
 
 /*--My/All Pages CSS-----------------------------------------------------------*/
+.genre-books
+{
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.genre-group
+{
+	width: 20%;
+	padding-right: 5px;
+	margin-bottom: 40px;
+}
+
 .genre-name
 {
 	color: #4B0082;
 	margin-bottom: 0;
+	margin-left: 0px;
+}
+
+.genre-separated
+{
+	padding-left: 5px;
+	font-size: 15px;
 }
 
 /*-------------------------------------------------------------------------------
  Responsive CSS Code
 -------------------------------------------------------------------------------*/
-/*--CSS Change at width of 1350px----------------------------------------------*/
-@media (max-width: 1350px)
-{
-	header nav
-	{
-		width: 20%;
-	}
-}
-
 /*--CSS Change at width of 1570px----------------------------------------------*/
 @media (max-width: 1570px)
 {
@@ -446,6 +457,40 @@ header nav
 		font-size: 15px;
 		height: 45px;
 		margin-right: 30px;
+	}
+
+	.genre-group
+	{
+		width: 25%;
+	}
+}
+
+/*--CSS Change at width of 1350px----------------------------------------------*/
+@media (max-width: 1350px)
+{
+	header nav
+	{
+		width: 20%;
+	}
+}
+
+/*--CSS Change at width of 1240px----------------------------------------------*/
+@media (max-width: 1240px)
+{
+	.genre-group
+	{
+		width: 33%;
+	}
+}
+
+/*--CSS Change at width of 950px----------------------------------------------*/
+@media (max-width: 950px)
+{
+	.genre-group
+	{
+		width: 50%;
+		padding-right: 0px;
+		margin-bottom: 0px;
 	}
 }
 
@@ -541,7 +586,25 @@ header nav
 
 	.genre
 	{
-		width: 33%;
+		width: 100%;
+	}
+
+	.genre-group
+	{
+		width: 100%;
+		padding-right: 0px;
+		margin-bottom: 0px;
+	}
+
+	.genre-name
+	{
+		font-size: 25px;
+	}
+
+	.genre-separated
+	{
+		padding-left: 25px;
+		font-size: 18px;
 	}
 }
 
