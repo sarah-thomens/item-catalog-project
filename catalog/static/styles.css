@@ -54,7 +54,7 @@ body
 	font-family: Arial Rounded MT Bold;
 	margin-left: auto;
 	margin-right: auto;
-	background-color: #F0d3F7;
+	background-color: #fbf4fc;
 }
 
 .container
@@ -164,7 +164,7 @@ header nav
 	flex: 1;
 	max-width: 300px;
 	padding-left: 20px;
-	background-color: #B98EA7;
+	background-color: #dcc6d3;
 }
 
 .genre-title
